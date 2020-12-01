@@ -6,7 +6,6 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-
 /**
  *  Program to introduce the use of LocalDate class
  */
@@ -56,6 +55,7 @@ public class App
 //
 //      Convert String to a LocalDate
 //        https://www.mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
+
         LocalDate d = LocalDate.parse("2018-12-25");  //default format
         DayOfWeek day = LocalDate.parse("2018-12-25").getDayOfWeek();
         System.out.println("day = " + day);
@@ -67,17 +67,19 @@ public class App
 
 //        Determining difference between 2 dates
 //        https://www.baeldung.com/java-date-difference
+
         LocalDate now = LocalDate.now();
         LocalDate sixDaysAhead = now.plusDays(6);
-//
 
         long diff = DAYS.between(now, sixDaysAhead);
         System.out.println("Difference = " + diff);
 
+
 //TODO#2 Determine how many days from now until Christmas day
 //
-
-
+        LocalDate xmasDay = LocalDate.parse("2020-12-25");
+        long diff2 = DAYS.between(now, xmasDay);
+        System.out.println("Days until XMas day = " + diff2);
 
         System.out.println("\n\n******** LocalDate *******\n");
         LocalDate thisDate = LocalDate.now();
@@ -92,6 +94,24 @@ public class App
         LocalDateTime thisDateTime = LocalDateTime.now();
         System.out.println("CurrentTime=" + thisDateTime);
 
+      // Classes with date type fields - consider your project
 
+        Student s1 = new Student("D001", "Tom","2002-08-28");
+        System.out.println("Student: " + s1);
+
+        // Creating Student DB class - a container for a list of Students
+        // The StudentDB class encapsulates all the functions that are available
+        // on the Student list
+
+        StudentDB studentDb = new StudentDB();
+        studentDb.addStudent( new Student("D888","Zoe","1999-12-30"));
+
+        Student result = studentDb.findStudentById("D888");
+        if(result!=null)
+            System.out.println(result);
+        else
+            System.out.println("Not found");
+
+        studentDb.loadStudentsFromFile();
     }
 }
